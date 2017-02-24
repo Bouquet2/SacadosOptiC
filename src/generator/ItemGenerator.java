@@ -1,6 +1,7 @@
 package generator;
 
 import bag.Item;
+
 import java.util.*;
 
 
@@ -87,6 +88,10 @@ public class ItemGenerator {
 
     public void orderItems() {
         items.sort((i1, i2) -> i1.getRatio() < i2.getRatio() ? 1 : -1);
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
