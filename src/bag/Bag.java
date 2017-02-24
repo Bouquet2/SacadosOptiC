@@ -14,6 +14,7 @@ public class Bag {
         if (maxWeight < 0)
             throw new Exception(String.format("bag can't have negative maxWeight value : %s", maxWeight));
         this.maxWeight = maxWeight;
+        this.weight = 0;
         items = new HashMap<>();
         util = 0;
     }
@@ -37,6 +38,10 @@ public class Bag {
 
     public int getNbItem() {
         return items.size();
+    }
+
+    public double getWeight() {
+        return weight;
     }
 
     @Override
