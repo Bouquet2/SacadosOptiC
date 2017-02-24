@@ -19,6 +19,10 @@ public class Bag {
         util = 0;
     }
 
+    public void clear() {
+        items.clear();
+    }
+
     public double getMaxWeight() {
         return this.maxWeight;
     }
@@ -38,6 +42,10 @@ public class Bag {
 
     public int getNbItem() {
         return items.size();
+    }
+
+    public Map<Integer, Item> getItems() {
+        return items;
     }
 
     public double getWeight() {
