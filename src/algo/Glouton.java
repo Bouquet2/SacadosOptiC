@@ -16,11 +16,10 @@ public class Glouton {
     public double generateOptimalValue(Bag bag1, Bag bag2, List<Item> items) {
         for (Item i : items) {
             if (bag1.addItem(i)) {
-                System.out.println("Sac 1, Item : " + i.getNum());
-            } else if (bag2.addItem(i)) {
-                System.out.println("Sac 2, Item : " + i.getNum());
-            } else {
-                System.out.println("Item : " + i.getNum() + " jeté");
+
+            }
+            else if (bag2.addItem(i)) {
+
             }
         }
         return bag1.getUtiliy() + bag2.getUtiliy();
