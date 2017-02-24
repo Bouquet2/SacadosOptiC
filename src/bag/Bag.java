@@ -44,6 +44,10 @@ public class Bag {
         return weight;
     }
 
+    public boolean isFull() {
+        return this.weight == this.maxWeight;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Sac : ");
