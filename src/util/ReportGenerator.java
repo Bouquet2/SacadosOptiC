@@ -4,6 +4,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import java.awt.*;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -72,5 +74,9 @@ public class ReportGenerator {
         workbook.write(fileOut);
         fileOut.close();
         System.out.println(String.format("%s fichier généré", this.filename));
+    }
+
+    public void openFile() throws IOException {
+        Desktop.getDesktop().open(new File(filename));
     }
 }

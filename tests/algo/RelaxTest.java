@@ -2,7 +2,6 @@ package algo;
 
 import bag.Bag;
 import bag.Item;
-import generator.ItemGenerator;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

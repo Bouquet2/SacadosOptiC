@@ -45,6 +45,6 @@ public class Main {
         }
 
         reportGenerator.generateFile();
-
+        reportGenerator.openFile();
     }
 }
