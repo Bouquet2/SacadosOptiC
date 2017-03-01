@@ -8,13 +8,11 @@ import generator.ItemGenerator;
 import util.ReportGenerator;
 
 public class Main {
-    //TODO Indiqué sur le tableau excel le min poids et max poids
-    //TODO Indiqué sur le tableau excel le min utilité et max utilité
-    //TODO Pour chaque évaluation insérer une ligne dans le tableau
-    //TODO Générer le tableau
+    //TODO Générer un tableau
 
     public static void main(String[] args) throws Exception {
         ItemGenerator generator = new ItemGenerator(10, 0, 10, 5, 10);
+        int nbJeu = 20;
 
         Glouton glouton = new Glouton();
         Relax relax = new Relax();
@@ -24,9 +22,9 @@ public class Main {
         Bag bag2;
         int cpt = 0;
         ReportGenerator reportGenerator = new ReportGenerator();
-        reportGenerator.init("Evaluation de l'algorithme glouton");
+        reportGenerator.init("Evaluation de l'algorithme glouton", 10, 0, 10, 5, 10, nbJeu);
 
-        while (cpt < 10) {
+        while (cpt < nbJeu) {
             generator.clearAndGenerate();
             generator.orderItems();
             bag1 = new Bag(20);
@@ -41,6 +39,7 @@ public class Main {
             cpt++;
         }
 
+        reportGenerator.setStats(nbJeu);
         reportGenerator.generateFile();
         reportGenerator.openFile();
     }
