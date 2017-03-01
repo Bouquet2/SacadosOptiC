@@ -24,23 +24,18 @@ public class Main {
         Bag bag2;
         int cpt = 0;
         ReportGenerator reportGenerator = new ReportGenerator();
-        reportGenerator.init("TEST CECI EST UN TEST. 1 2 TEST 2 1");
+        reportGenerator.init("Evaluation de l'algorithme glouton");
 
         while (cpt < 10) {
             generator.clearAndGenerate();
             generator.orderItems();
             bag1 = new Bag(20);
             bag2 = new Bag(5);
-            gloutonEval = glouton.generateOptimalValue(new Bag(800), new Bag(400), generator.getItems());
+            gloutonEval = glouton.generateOptimalValue(bag1, bag2, generator.getItems());
             bag1.clear();
             bag2.clear();
             relaxEval   = relax.generateOptimalValue(bag1, bag2, generator.getItems());
             cpt++;
-            System.out.println(String.format("Generation %d", cpt));
-            System.out.println(String.format("Glouton evaluation : %f", gloutonEval));
-            System.out.println(String.format("Relax evaluation : %f", relaxEval));
-            System.out.println(String.format("Ratio : %f", relaxEval / gloutonEval));
-            System.out.println("\n");
             reportGenerator.setRowEval(gloutonEval, relaxEval);
         }
 

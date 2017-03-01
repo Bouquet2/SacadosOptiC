@@ -30,6 +30,7 @@ import java.io.IOException;
 
 
 public class ReportGenerator {
+
     private String filename = "val_remy_evaluation_algo_glouton.xls";
     private HSSFWorkbook workbook;
     private HSSFSheet sheet;
@@ -42,7 +43,7 @@ public class ReportGenerator {
     }
 
     public void setRowEval(double gloutonEval, double relaxEval) {
-        double rapportEval = relaxEval / gloutonEval;
+        double rapportEval = gloutonEval / relaxEval;
         currentRow++;
         HSSFRow rowhead = sheet.createRow(currentRow);
         rowhead.createCell(0).setCellValue(String.format("Jeu %d", currentRow - 2));
