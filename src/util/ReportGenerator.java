@@ -3,6 +3,7 @@ package util;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
 
 import java.awt.*;
 import java.io.File;
@@ -35,11 +36,20 @@ public class ReportGenerator {
     private HSSFWorkbook workbook;
     private HSSFSheet sheet;
     private int currentRow;
+    private CellStyle stylePercentage;
+    private double minEvalGlouton;
+    private double minEvalRelax;
+    private double maxEvalGlouton;
+    private double maxEvalRelax;
+    private HSSFRow rowheadMinMax;
 
     public ReportGenerator() {
         this.workbook = new HSSFWorkbook();
         this.sheet = workbook.createSheet("FirstSheet");
         currentRow = 1;
+        stylePercentage = workbook.createCellStyle();
+        stylePercentage.setDataFormat(workbook.createDataFormat().getFormat("0.000%"));
+        rowheadMinMax = sheet.createRow(3);
     }
 
     public void setRowEval(double gloutonEval, double relaxEval) {
@@ -50,11 +60,14 @@ public class ReportGenerator {
         rowhead.createCell(1).setCellValue(gloutonEval);
         rowhead.createCell(2).setCellValue(relaxEval);
         rowhead.createCell(3).setCellValue(rapportEval);
+        rowhead.createCell(4).setCellStyle(stylePercentage);
+        rowhead.getCell(4).setCellValue(rapportEval);
     }
 
     private void setTitle(String title) {
         HSSFRow rowhead = sheet.createRow(0); //cast short si il faut
         rowhead.createCell(5).setCellValue(title);
+        currentRow++;
     }
 
     public void init(String title) {
@@ -64,6 +77,11 @@ public class ReportGenerator {
         rowhead.createCell(1).setCellValue("Evaluation glouton");
         rowhead.createCell(2).setCellValue("Evaluation relaxée");
         rowhead.createCell(3).setCellValue("Rapport");
+        rowhead.createCell(4).setCellValue("Pourcentage");
+        rowhead.createCell(6).setCellValue("Min evaluation gloutonne");
+        rowhead.createCell(7).setCellValue("Max evaluation gloutonne");
+        rowhead.createCell(8).setCellValue("Min evaluation relaxée");
+        rowhead.createCell(9).setCellValue("Max evaluation relaxée");
     }
 
     public void setFilename(String filename) {
@@ -79,5 +97,35 @@ public class ReportGenerator {
 
     public void openFile() throws IOException {
         Desktop.getDesktop().open(new File(filename));
+    }
+
+    public void setMinAndMaxGlouton(int cpt, double gloutonEval) {
+        if(cpt == 0) {
+            minEvalGlouton = gloutonEval;
+            maxEvalGlouton = gloutonEval;
+        }
+        if(gloutonEval >= maxEvalGlouton) {
+            maxEvalGlouton = gloutonEval;
+            rowheadMinMax.createCell(7).setCellValue(maxEvalGlouton);
+        }
+        if(gloutonEval <= minEvalGlouton) {
+            minEvalGlouton = gloutonEval;
+            rowheadMinMax.createCell(6).setCellValue(minEvalGlouton);
+        }
+    }
+
+    public void setMinAndMaxRelax(int cpt, double relaxEval) {
+        if(cpt == 0) {
+            minEvalRelax = relaxEval;
+            maxEvalRelax = relaxEval;
+        }
+        if(relaxEval >= maxEvalRelax) {
+            maxEvalRelax = relaxEval;
+            rowheadMinMax.createCell(9).setCellValue(maxEvalRelax);
+        }
+        if(relaxEval <= minEvalRelax) {
+            minEvalRelax = relaxEval;
+            rowheadMinMax.createCell(8).setCellValue(minEvalRelax);
+        }
     }
 }

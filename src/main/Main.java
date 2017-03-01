@@ -35,8 +35,10 @@ public class Main {
             bag1.clear();
             bag2.clear();
             relaxEval   = relax.generateOptimalValue(bag1, bag2, generator.getItems());
-            cpt++;
             reportGenerator.setRowEval(gloutonEval, relaxEval);
+            reportGenerator.setMinAndMaxGlouton(cpt, gloutonEval);
+            reportGenerator.setMinAndMaxRelax(cpt, relaxEval);
+            cpt++;
         }
 
         reportGenerator.generateFile();
