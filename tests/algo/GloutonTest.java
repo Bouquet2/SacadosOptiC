@@ -11,9 +11,6 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-/**
- * Created by repocque on 24/02/2017.
- */
 public class GloutonTest {
 
     private Glouton glouton;

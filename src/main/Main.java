@@ -10,7 +10,6 @@ import util.ReportGenerator;
 import java.util.Random;
 
 public class Main {
-    //TODO Générer un tableau
 
     public static void main(String[] args) throws Exception {
 

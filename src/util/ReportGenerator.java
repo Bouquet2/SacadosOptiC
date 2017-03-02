@@ -9,22 +9,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-//IMPORTANT
-
-//Excel
-//TODO Trouver une solution pour le jar !! (BUILDER)
-
-//Rapport latex
-//TODO Quelles valeurs générer ?
-//TODO Pourquoi celles ci ?
-//TODO Explication des données obtenues
-
-//EN OPTION
-//TODO Formater toutes les cellules (réduire le nombre de chiffre après la virgule)
-//TODO Afficher un VRAI tableau
-//TODO Mettre en plus grande police le titre
-//TODO Changer la taille des cellules pour générer un "beau" tableau
-
 public class ReportGenerator {
 
     private String filename = "val_remy_evaluation_algo_glouton.xls";
